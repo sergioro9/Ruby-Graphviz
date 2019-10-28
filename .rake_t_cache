@@ -1,0 +1,15 @@
+rake build                 # Build ruby-graphviz-1.2.4.gem into the pkg directory
+rake changelog:update      # Update CHANGELOG
+rake clean                 # Remove any temporary products
+rake clobber               # Remove any generated files
+rake contributors:install  # Install all-contributors-cli
+rake contributors:run      # Run
+rake default               # Packages up Ruby/GraphViz
+rake install               # Build and install ruby-graphviz-1.2.4.gem into system gems
+rake install:local         # Build and install ruby-graphviz-1.2.4.gem into system gems without network access
+rake largest               # Show largest files
+rake man                   # Generate man pages
+rake release[remote]       # Create tag v1.2.4 and build and push ruby-graphviz-1.2.4.gem to rubygems.org
+rake test                  # Run tests
+rake tree                  # Show ruby files
+rake yard                  # Generate YARD Documentation

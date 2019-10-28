@@ -31,7 +31,7 @@ Rake::TestTask.new(:test) do |t|
   test_files = FileList['test/test_*.rb']
   test_files.exclude("test/test_examples.rb") unless find_executable("dot", nil)
 
-  p test_files
+  #p test_files
   t.test_files = test_files
 end
 
@@ -67,4 +67,28 @@ namespace :contributors do
   task :run do
     sh "npx all-contributors"
   end
+end
+
+def check_command(cmd)
+  stderr = $stderr
+  $stderr.reopen(File.new('/dev/null', 'w'))
+  %x(which #{cmd})
+  $stderr.reopen(stderr)
+  $?.success?
+end
+
+desc 'Show ruby files'
+task :tree do
+  exit unless check_command('tree')
+  system("tree -P '*rb' -I 'test*|sample*'")
+end
+
+desc 'Show largest files'
+task :largest do
+  require 'open3'
+  # not working
+  #Open3.pipeline("largest 400", "grep -v 'sample\|.png'")
+
+  # grep is not working
+  system("largest 400 | grep -v 'sample\|.png'")
 end
